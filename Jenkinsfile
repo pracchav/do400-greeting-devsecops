@@ -31,7 +31,7 @@ pipeline {
     post {
             failure {
                 withCredentials([usernamePassword(
-                    credentialIsId: 'github-global',
+                    credentialsId: 'github-global',
                     usernameVariable: 'USERNAME',
                     passwordVariable: 'PASSWORD'
                 )]) {
