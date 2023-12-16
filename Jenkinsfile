@@ -36,7 +36,7 @@ pipeline {
                     passwordVariable: 'PASSWORD'
                 )]) {
                     sh """
-                        curl -X POST -H 'Authorization: token $PASSWORD' 'https://api.github.com/repos/$USERNAME/do400-greeting-devsecops/issues' -d '{"tittle": "CI build $BUILD_NUMBER", "body": "Pipeline build $BUILD_NUMBER has failed"}'
+                        curl -X POST -H 'Authorization: token $PASSWORD' ''https://github.com/pracchav/do400-greeting-devsecops/issues' -d '{"tittle": "CI build $BUILD_NUMBER", "body": "Pipeline build $BUILD_NUMBER has failed"}'
                     """
             }
         }
