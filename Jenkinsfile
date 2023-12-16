@@ -27,19 +27,18 @@ pipeline {
 		'''
 	    }
 	}
-
-	post {
-	    failure {
-		withCredentials([usernamePassword(
-		    credentialIsId: 'github-global',
-		    usernameVariable: 'USERNAME',
-		    passwordVariable: 'PASSWORD'
-		)]) {
-		    sh """
-			curl -X POST -H 'Authorization: token $PASSWORD' 'https://api.github.com/repos/$USERNAME/do400-greeting-devsecops/issues' -d '{"tittle": "CI build $BUILD_NUMBER", "body": "Pipeline build $BUILD_NUMBER has failed"}'
-		    """
-		}
-	    }
-	}
+    }
+    post {
+            failure {
+                withCredentials([usernamePassword(
+                    credentialIsId: 'github-global',
+                    usernameVariable: 'USERNAME',
+                    passwordVariable: 'PASSWORD'
+                )]) {
+                    sh """
+                        curl -X POST -H 'Authorization: token $PASSWORD' 'https://api.github.com/repos/$USERNAME/do400-greeting-devsecops/issues' -d '{"tittle": "CI build $BUILD_NUMBER", "body": "Pipeline build $BUILD_NUMBER has failed"}'
+                    """
+            }
+        }
     }
 }
